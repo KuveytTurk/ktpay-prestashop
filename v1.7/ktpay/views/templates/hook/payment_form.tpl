@@ -93,6 +93,10 @@
                         style="flex-wrap:wrap">
                         {if $installment_count!=null and $installment_count>1 }
                             <table>
+                                <tr>
+                                    <th></th>
+                                    <th>Toplam Tutar / Aylık Ödeme</th>
+                                </tr>
                                 {for $i=1 to $installment_count+1}
                                     {if $rates[$i]['active']==1}
                                         <tr>
