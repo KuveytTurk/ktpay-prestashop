@@ -37,9 +37,15 @@ class KTPayResultModuleFrontController extends ModuleFrontController {
             $td_mode =  Configuration::get('ktpay_td_mode');
             $td_overamount = (float) Configuration::get('ktpay_td_overamount');
             $environment = Configuration::get('ktpay_environment');
+            //$rates = unserialize(Configuration::get('ktpay_rates'));
             $orderId = 'PS-' . $this->context->cookie->id_cart;
 
             $total = (float) $cart->getOrderTotal(true, Cart::BOTH);
+
+            // if($installment>1)
+            // {                
+            //     $total = KTPayConfig::calculate_total_price($total, $rates,  $installment);
+            // }
 
             $ip=Tools::getRemoteAddr();
             $currency = new Currency((int) $cart->id_currency);
@@ -53,7 +59,6 @@ class KTPayResultModuleFrontController extends ModuleFrontController {
                 
             $ktpay = new KTVPos();
             $params = array(
-                'environment'=> $environment,
                 'merchant_id' => $merchant_id,
                 'customer_id' => $customer_id,
                 'api_user_name' => $api_username,
@@ -212,8 +217,10 @@ class KTPayResultModuleFrontController extends ModuleFrontController {
         $customer_id =  Configuration::get('ktpay_customer_id');
         $api_username =  Configuration::get('ktpay_api_username');
         $api_password = Configuration::get('ktpay_api_password');
+        $environment = Configuration::get('ktpay_environment');
 
         $bodyParams=array(
+            'environment' => $environment,
             'md'=>(isset($postParams['Result_MD'])) ? $postParams['Result_MD'] : "",
             'merchant_id'=>$merchant_id,
             'customer_id' =>$customer_id,
