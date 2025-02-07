@@ -81,6 +81,7 @@ class KTVPos
         $this->merchant_order_id = $params['merchant_order_id'];
         $this->order_id = $params['order_id'];
         $this->md = $params['md'];
+        $this->environment = $params['environment'];
         
         $amount=$params['amount']*100;
         $amount=str_replace(',','',$amount);
