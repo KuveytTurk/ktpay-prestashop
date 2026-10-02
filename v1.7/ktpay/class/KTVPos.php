@@ -179,6 +179,7 @@ class KTVPos
             \"amount\": \"".$this->amount."\",
             \"currency\": \"".$this->currency_code."\",
             \"installmentCount\":". $this->installment_count. ",
+            \"cardHolderIp\": \"".$this->customer_ip."\",
             \"customer\": {";
 
             if($this->phone_number!=null || $this->phone_number!= "")
@@ -322,4 +323,3 @@ class KTVPos
     }
 
 }
-
